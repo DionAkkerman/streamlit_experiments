@@ -25,3 +25,7 @@ if __name__ == '__main__':
     pcap = 'test/http.pcap'
     nodes, paths = get_ips_simple(pcap)
     nodes
+    
+    pcap = 'test/infection.pcap'
+    nodes, paths = get_ips_simple(pcap)
+    nodes
