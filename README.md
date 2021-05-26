@@ -6,4 +6,4 @@
 Run locally with `streamlit run app.py`
 
 
-# Uses [![streamlit-agraph](https://github.com/ChrisChross/streamlit-agraph)]
+Uses [![streamlit-agraph](https://github.com/ChrisChross/streamlit-agraph)]
