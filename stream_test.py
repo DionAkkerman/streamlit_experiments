@@ -12,19 +12,35 @@ import numpy as np
 import pandas as pd
 import time
 
-cats = [1,1,2,2,3,3,3]
-df = pd.DataFrame({'cat': cats, 'value': np.random.randn(len(cats))})
 
-# Slider widget (on sidebar)
-selected_cat = st.sidebar.slider('Select a cat', value = 1, min_value = int(df.cat.min()), max_value = int(df.cat.max()))  
+# Set init state
+st.set_page_config(
+    page_title="Look at me",
+    page_icon="()",
+    layout="wide",
+    initial_sidebar_state="expanded",)
+
 # Button
 timer_button = st.sidebar.button('Countdown from 10')  
 
-# Interactive table widget
-df = df.loc[df['cat'] == selected_cat]
-st.dataframe(df)
-# Little plot
-st.line_chart(data=df['value'])
+uploaded_file = st.file_uploader("Choose a file", type ="csv")
+if uploaded_file:
+    df = pd.read_csv(uploaded_file)
+    # Slider widget (on sidebar)
+    selected_cat = st.sidebar.slider('Select a cat', value = 1, min_value = int(df.cat.min()), max_value = int(df.cat.max()))  
+
+    st.success("File uploaded successfully")
+
+    # Interactive table widget
+    df = df.loc[df['cat'] == selected_cat]
+    st.dataframe(df)
+    # Little plot
+    if 'value' in df.columns:
+        st.line_chart(data=df['value'])
+    
+
+
+
 
 # Progress bar
 progress_bar = st.progress(0)
@@ -35,9 +51,18 @@ st.json({'name': 'Dion',
 
 if timer_button:
     i = 0
-    while i < 10:
-        time.sleep(1)
-        i += 1
-        progress_bar.progress(i*10)
-    
+    with st.spinner(text='In progress...'):
+        while i < 10:
+            time.sleep(1)
+            i += 1
+            
+            progress_bar.progress(i*10)
+        
     st.balloons()
+
+
+with st.echo():
+    # Everything inside this block will be both printed to the screen
+    # and executed.
+    greeting = "Hi there!"
+    st.write(greeting)
