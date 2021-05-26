@@ -20,10 +20,11 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded",)
 
+### Sidebare
 # Button
 timer_button = st.sidebar.button('Countdown from 10')  
+uploaded_file = st.sidebar.file_uploader("Choose a file", type ="csv")
 
-uploaded_file = st.file_uploader("Choose a file", type ="csv")
 if uploaded_file:
     df = pd.read_csv(uploaded_file)
     # Slider widget (on sidebar)
