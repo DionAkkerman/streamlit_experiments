@@ -16,7 +16,6 @@ from generate_graph import generate_graph
 # Set init state
 st.set_page_config(
     page_title="PCAP grapher",
-    page_icon="()",
     layout="wide",
     initial_sidebar_state="expanded",)
 
